@@ -190,9 +190,15 @@ def prepare_images(
 
     # print(f'Inside prepare_images {file_a}, {file_b}')
 
-        # read images into numpy arrays
-    frame_a = tools.imread(file_a)
-    frame_b = tools.imread(file_b)
+    # read images into numpy arrays
+    
+    # try to read them from .npy files for massive images
+    try:
+        frame_a = np.load(file_a)
+        frame_b = np.load(file_b)
+    except:
+        frame_a = tools.imread(file_a)
+        frame_b = tools.imread(file_b)
 
     
     # crop to roi
